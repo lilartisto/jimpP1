@@ -1,6 +1,7 @@
 #include "map.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 void initState(StateT* state,int width,int height)
 {
     state->width = width;
@@ -21,6 +22,15 @@ void freeState(StateT* state)
         free(state->board[i]);
     }    
     free(state->board);
+}
+
+void fileToState(StateT* state, FILE* in)
+{
+    int x, y;
+    while( fscanf( in, "%d %d", &x, &y) != EOF )
+    {
+        state->board[y][x] = 1;
+    }
 }
 
 void writeState(StateT* state ,FILE* out)
