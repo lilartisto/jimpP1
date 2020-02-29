@@ -3,14 +3,9 @@
 
 
 
-typedef struct CellState
-{
-    bool isLiving;
-} CellStateT;
-
 typedef struct State
 {
-    CellStateT **board;
+    bool **board;
     int width;
     int height;
 }StateT;
