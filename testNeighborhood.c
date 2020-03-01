@@ -26,8 +26,8 @@ void main(int argc, char** argv)
     fileToState(&state, in);
     writeState(&state, stdout);
     int counter;
-    int x = 1;
-    int y = 1;
+    int x = 4;
+    int y = 2;
     counter = count_neighborhood(&state, x, y);
     printf("Liczba sasiadow punktu o wspolrzednych x = %d i y = %d jest rowna %d", x, y, counter);
 
