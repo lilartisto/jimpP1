@@ -8,7 +8,7 @@ void main()
     int width = 10;
     int height = 10;
     initState(&state, width, height);
-    writeStateToPBM(&state, stdout);
+    writeState(&state, stdout);
     freeState(&state);
 
 }

@@ -19,7 +19,7 @@ void main(int argc, char **argv)
     fscanf(in, "%d %d", &width, &height);
     initState(&state, width, height);
     fileToState(&state, in);
-    writeStateToPBM(&state, stdout);
+    writeState(&state, stdout);
 
     freeState(&state);
 }

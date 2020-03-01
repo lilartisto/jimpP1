@@ -25,7 +25,7 @@ void main(int argc, char **argv)
 
     next_round(&state1, &state2);
 
-    writeStateToPBM(&state2, stdout);
+    writeState(&state2, stdout);
 
     freeState(&state1);
     freeState(&state2);
