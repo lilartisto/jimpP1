@@ -32,16 +32,3 @@ void fileToState(StateT* state, FILE* in)
         state->board[y][x] = 1;
     }
 }
-
-void writeState(StateT* state ,FILE* out)
-{
-    //przerzucic do printpbm.h
-    //printf P1 szeroksc wysokosc
-    for (int i = 1; i < state->height+1; i++)
-    {
-        for (int j = 1; j < state->width+1; j++)
-            fprintf(out, " %d ", state->board[i][j]);
-        fprintf(out,"\n");
-    }
-
-}

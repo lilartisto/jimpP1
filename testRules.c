@@ -1,11 +1,12 @@
+#include <stdio.h>
+#include "rules.h"
 #include "printFile.h"
 #include "map.h"
 
-#include <stdio.h>
-
 void main(int argc, char **argv)
 {
-    StateT state;
+    StateT state1;
+    StateT state2;
     int width;
     int height;
 
@@ -16,10 +17,16 @@ void main(int argc, char **argv)
         fprintf(stderr, "Blad, nie moge czytac z pliku\n");
         return;
     }
+    
     fscanf(in, "%d %d", &width, &height);
-    initState(&state, width, height);
-    fileToState(&state, in);
-    writeStateToPBM(&state, stdout);
+    initState(&state1, width, height);
+    initState(&state2, width, height);
+    fileToState(&state1, in);
 
-    freeState(&state);
+    next_round(&state1, &state2);
+
+    writeStateToPBM(&state2, stdout);
+
+    freeState(&state1);
+    freeState(&state2);
 }

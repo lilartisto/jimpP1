@@ -1,2 +1,15 @@
-//rodzi i zabija komorki na planszy 2 na podstawie planszy 1
-void born_kill( State 1, State 2);
+#ifndef RULES_H
+#define RULES_H
+
+#include <stdbool.h>
+#include <stdio.h>
+#include "map.h"
+#include "neighborhood.h"
+
+//mowi czy urodzic czy zabic komorke
+bool born_kill( StateT* state1, int x, int y);
+
+//przechodzi do nastepnej tury, na podstawie state1 robi state2
+void next_round( StateT* state1, StateT* state2);
+
+#endif
