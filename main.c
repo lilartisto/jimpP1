@@ -16,12 +16,17 @@ void error( int error )
     {
         fprintf(stderr, "Za malo pamieci!\n");
     }
+    else if ( error == 2 )
+    {
+        fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
+    }
 }
 
 int main( int argc, char **argv )
 {
     //1 argument to ilosc iteracji
     //2 argument to plik
+    //3 argument to do jakiego pliku zapisac status
     int n = argc > 1 ? atoi( argv[1] ) : 5;
     FILE *in = argc > 2 ? fopen( argv[2], "r" ) : fopen( "data.txt", "r");
     StateT state1;
@@ -48,23 +53,34 @@ int main( int argc, char **argv )
     }
 
     fileToState( &state1, in );
-    writeState( &state1, stdout );
 
     for( int i = 0; i < n; i++ )
     {
-        system("cls");
+        writeStateToPBM( &state1, i );
         if( first == 1 )
         {
             next_round( &state1, &state2 );
-            writeState( &state2, stdout );
+            writeStateToPBM( &state2, i+1 );
         }
         else
         {
             next_round( &state2, &state1 );
-            writeState( &state1, stdout );
+            writeStateToPBM( &state1, i+1 );
         }
         first = !first;
     }
+
+    if( argc > 3 )
+        if( first == 1 )
+        {
+            if( StateToFile( &state1, argv[3] ))
+                error(2);
+        }
+        else
+        {
+            if( StateToFile( &state2, argv[3] ))
+                error(2);
+        }
     
     freeState( &state1 );
     freeState( &state2 );

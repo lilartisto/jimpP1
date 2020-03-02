@@ -5,6 +5,6 @@
 #include "map.h"
 
 void writeState(StateT* state ,FILE* out);
-void writeStateToPBM(StateT* state ,FILE* out);
+void writeStateToPBM(StateT* state , int i);
 
 #endif

@@ -11,8 +11,16 @@ void writeState(StateT* state, FILE* out)
     }
 }
 
-void writeStateToPBM(StateT* state, FILE* out)
+void writeStateToPBM(StateT* state, int i)
 {
-    printf("P1\n%d %d\n", state->width, state->height);
+    char tab[32];
+    sprintf( tab, "photo%d.pbm", i );
+    FILE* out = fopen(tab,"w");
+
+    if( out == NULL )
+        return;
+    
+    fprintf( out, "P1\n%d %d\n", state->width, state->height);
     writeState( state, out );
+    fclose( out );
 }

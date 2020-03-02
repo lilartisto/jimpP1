@@ -32,3 +32,18 @@ void fileToState(StateT* state, FILE* in)
         state->board[y][x] = 1;
     }
 }
+
+int StateToFile( StateT* state, char* name )
+{
+    FILE* out = fopen(name, "w");
+    if( out == NULL )
+        return 1;
+
+    fprintf( out, "%d %d\n", state->width, state->height );
+
+    for( int i = 1; i <= state->height; i++ )
+        for( int j = 1; j <= state->width; j++ )
+            if( state->board[i][j] == 1 )
+                fprintf( out, "%d %d\n", j, i );
+    return 0;
+}

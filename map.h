@@ -14,5 +14,6 @@ typedef struct State
 void initState(StateT* state,int width,int height);
 void freeState(StateT* state);
 void fileToState(StateT* state, FILE* in);
+int StateToFile( StateT* state, char* name );
 
 #endif
