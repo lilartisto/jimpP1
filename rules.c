@@ -6,8 +6,7 @@
 
 bool born_kill(StateT* state, int x, int y)
 {
-    //int n = count_neighborhood( state, x , y );
-    int n = 4;
+    int n = count_neighborhood( state, x , y );
 
     if( n == 3 )
         return 1;
