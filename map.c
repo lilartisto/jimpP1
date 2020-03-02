@@ -29,7 +29,8 @@ void fileToState(StateT* state, FILE* in)
     int x, y;
     while( fscanf( in, "%d %d", &x, &y) != EOF )
     {
-        state->board[y][x] = 1;
+        if( x >= 1 && x <= state->width && y >= 1 && y <= state->height )
+            state->board[y][x] = 1;
     }
 }
 
