@@ -66,16 +66,9 @@ int main( int argc, char **argv )
 
     if( argc > 3 )
     {
-        if( first == 1 )
-        {
-            if( StateToFile( &state1, argv[3] ))
+        StateT* state = first == 1 ? &state1 : &state2;
+        if ( StateToFile( state, argv[3] ))
                 fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
-        }
-        else
-        {
-            if( StateToFile( &state2, argv[3] ))
-                fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
-        }
     }
 
     freeState( &state1 );

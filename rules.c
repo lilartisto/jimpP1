@@ -20,10 +20,5 @@ void next_round( StateT* state1, StateT* state2)
 {
     for( int i = 1; i <= state1->height; i++)
         for( int j = 1; j <= state1->width; j++)
-        {
-            if( born_kill(state1, j, i) )
-                state2->board[i][j] = 1;
-            else
-                state2->board[i][j] = 0;
-        }
+            state2->board[i][j] = born_kill(state1, j, i);
 }
