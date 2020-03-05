@@ -25,11 +25,20 @@ void writeStateToPBM(StateT* state, int i)
     FILE* out = fopen(tab,"w");
 
     if( out == NULL )
-        return;
+	{
+		fprintf(stderr, "Nie udalo sie otworzyc/stworzyc pliku wyjsciowego do obrazu\n");
+        	return;
+	}
     
     fprintf( out, "P1\n%d %d\n", state->width, state->height);
     writeState( state, out );
     fclose( out );
+}
+
+void writeStateToPNG(StateT* state, char* tab)
+{
+	process_file( state );
+	write_png_file( tab );
 }
 
 int x, y;
@@ -88,7 +97,7 @@ void write_png_file(char* file_name) {
   fclose(fp);
 }
 
-void process_file( StateT *state ) {
+void process_file(StateT* state) {
 	width = state->width;
 	height = state->height;
   bit_depth = 8;

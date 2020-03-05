@@ -8,6 +8,7 @@ void main(int argc, char **argv)
     StateT state;
     int width;
     int height;
+    char photoName[32];
 
     FILE *in = argc > 1 ? fopen(argv[1], "r") : fopen("data.txt", "r");
 
@@ -20,8 +21,9 @@ void main(int argc, char **argv)
     initState(&state, width, height);
     fileToState(&state, in);
 
-    void process_file( &state );
-    void write_png_file( "out.png" );
+	sprintf( photoName, "photo%d.png", 0 );
+    process_file(&state);
+    write_png_file( photoName );
 
     writeState(&state, stdout);
 

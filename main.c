@@ -18,6 +18,7 @@ int main( int argc, char **argv )
     int width;
     int height;
     bool first = 1; // czy pierwsza plansza
+    char photoName[32];
 
     if( in == NULL )
     {
@@ -37,24 +38,28 @@ int main( int argc, char **argv )
     }
 
     fileToState( &state1, in );
+    sprintf( photoName, "photo0.png");
+    writeStateToPNG(&state1, photoName);
 
-    for( int i = 0; i < n; i++ )
+    // glowna petla
+    for( int i = 1; i <=  n; i++ )
     {
-        writeStateToPBM( &state1, i );
+	sprintf( photoName, "photo%d.png", i );
         if( first == 1 )
         {
             next_round( &state1, &state2 );
-            writeStateToPBM( &state2, i+1 );
+            writeStateToPNG( &state2, photoName );
         }
         else
         {
             next_round( &state2, &state1 );
-            writeStateToPBM( &state1, i+1 );
+            writeStateToPNG( &state1, photoName );
         }
         first = !first;
     }
 
     if( argc > 3 )
+    {
         if( first == 1 )
         {
             if( StateToFile( &state1, argv[3] ))
@@ -65,7 +70,8 @@ int main( int argc, char **argv )
             if( StateToFile( &state2, argv[3] ))
                 fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
         }
-    
+    }
+
     freeState( &state1 );
     freeState( &state2 );
     return 0;
