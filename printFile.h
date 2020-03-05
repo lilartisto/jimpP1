@@ -6,7 +6,6 @@
 #include "map.h"
 
 void writeState(StateT* state ,FILE* out);
-void writeStateToPBM(StateT* state , int i);
 void writeStateToPNG(StateT* state, char* tab);
 
 void write_png_file(char* file_name);
