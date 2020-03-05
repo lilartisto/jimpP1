@@ -10,7 +10,7 @@ int main( int argc, char **argv )
 {
     //1 argument to ilosc iteracji
     //2 argument to plik
-    //3 argument to do jakiego pliku zapisac status
+    //3 argument to do jakiego pliku zapisac stan
     int n = argc > 1 ? atoi( argv[1] ) : 5;
     FILE *in = argc > 2 ? fopen( argv[2], "r" ) : fopen( "data.txt", "r");
     StateT state1;
@@ -27,6 +27,12 @@ int main( int argc, char **argv )
     }
 
     fscanf( in, "%d %d", &width, &height );
+
+    if( (width <= 0) || height <= 0 )
+    {
+        fprintf(stderr, "Podano zly wymiar planszy\n");
+        return -1;
+    }
 
     initState( &state1, width, height );
     initState( &state2, width, height );
