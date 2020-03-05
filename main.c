@@ -5,22 +5,6 @@
 #include "printFile.h"
 #include "rules.h"
 
-void error( int error )
-{
-    if( error == 0 )
-    {
-        fprintf(stderr, "Nie udalo sie otworzyc pliku wejsciowego\n");
-        return;
-    }
-    else if ( error == 1 )
-    {
-        fprintf(stderr, "Za malo pamieci!\n");
-    }
-    else if ( error == 2 )
-    {
-        fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
-    }
-}
 
 int main( int argc, char **argv )
 {
@@ -37,7 +21,7 @@ int main( int argc, char **argv )
 
     if( in == NULL )
     {
-        error( 0 );
+        fprintf(stderr, "Nie udalo sie otworzyc pliku wejsciowego\n");
         return -1;
     }
 
@@ -48,7 +32,7 @@ int main( int argc, char **argv )
 
     if( state1.board == NULL || state2.board == NULL )
     {
-        error( 1 );
+        fprintf(stderr, "Za malo pamieci!\n");
         return -1;
     }
 
@@ -74,12 +58,12 @@ int main( int argc, char **argv )
         if( first == 1 )
         {
             if( StateToFile( &state1, argv[3] ))
-                error(2);
+                fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
         }
         else
         {
             if( StateToFile( &state2, argv[3] ))
-                error(2);
+                fprintf(stderr, "Nie udalo sie otworzyc pliku do zapisu stanu\n");
         }
     
     freeState( &state1 );
